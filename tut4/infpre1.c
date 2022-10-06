@@ -1,98 +1,65 @@
-#include <stdio.h>
-#include <ctype.h>
-int max = 100;
-struct stack{
-    char data [max];
-    int top;
-};
-int isempty(struct stack * s){
-    if (s->top == -1)
-        return (1);
-    return (0);
+#include<stdio.h>
+#include<ctype.h>
+
+char stack[40];
+int top = -1;
+
+void push(char m)
+{
+    stack[++top] = m;
 }
-int isfull(struct stack * s){
-    if (s->top == max-1)
-        return (1);
-    return (0);
-}
-char pop(struct stack * s){
-    if (!isempty(s)){
-        char c=s->data[s->top];
-        s->top--;
-        return(c);
-    }
-}
-void push(struct stack * s,int n){
-    if(isempty(s))
-        s->top =-1;
-    if(!isfull(s)){
-        s->top++;
-        s->data[s->top] = n;
-    }
+char pop()
+{
+    if(top == -1)
+      return(-1);
+    else
+      return stack[top--];
 }
 
-void display(struct stack * s){
-    int n= s->top;
-    while(n > 0){
-        printf("data is : %d\n",s->data[n]);
-        n--;
-    }
-}
-int prec(char x)
+int priority(char m)
 {
-    if(x == '(')
-        return 0;
-    if(x == '+' || x == '-')
-        return 1;
-    if(x == '*' || x == '/')
-        return 2;
-    if( x=='%')
-        return(3);
-    if( x=='^')
-        return(4);
-    return 0;
+    if(m =='(')
+     return(0);
+    if(m =='+'|| m =='_')
+     return(1);
+    if(m =='*'|| m =='/')
+     return(2);
+
+
 }
-char top(struct stack * s){
-    return (s->data[s->top]);
-}
-void InfixtoPostfix(char * Infix, char * Post)
-{
-    printf("Postfix is: ");
-    struct stack s;
-    char x, temp;
-    int i=0, j=0;
-    for (i=0, Infix[i]!="\0"; i++;)
-    {
-        temp = Infix[i];
-        if(isalnum(temp))
-        {
-            Post[j++]=temp;
-        }
-        else if (temp == '(')
-                push(&s, temp);
-        else if (temp == ')')
-        {
-            while((x=pop(&s))!=')')
-                Post[j++] = x;
-        }
-        else while(prec(temp)<=prec(top(&s))){
-            Post[j++]=pop(&s);
-            push(&s,temp);}
-//         printf("Postfix is: %c",temp);
-    }
-    while(!isempty(&s))
-    {
-         Post[j++]=pop(&s);
-         Post[j]='\0';
-    }
-    printf("Postfix conversion is: %s",Post);
-}
+
 int main()
 {
-    char infix[max], post[max];
-    printf("Infix operation is");
-    scanf("%s", infix);
-    InfixtoPostfix(&infix, &post);
-    printf("Postfix conversion is: %s",post);
+    char exp[40];
+    char*e,m;
+    printf(" the expresssion is:");
+    scanf("%s",exp);
+    printf("\n");
+    e = exp;
 
+    while(*e!='\0')
+    {
+        if(isalnum(*e))
+          printf("%c",*e);
+        else if(*e=='(')
+          push(*e);
+        else if(*e==')')
+        {
+            while((m = pop())!='(')
+             printf("%c",m);
+        }
+        else
+        {
+            while(priority(stack[top])>=priority(*e))
+              printf("%c",pop());
+             push(*e);
+        }
+        e++;
+     }
+
+     while(top !=-1)
+     {
+         printf("%c",pop());
+     }
+     return 0;
 }

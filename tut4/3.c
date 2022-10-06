@@ -129,10 +129,10 @@ int main()
     push("e");
     push("e");
     char c = "a";
-    printf("%c",c);
+    printf("%c v", c);
     c = pop();
     printf("3");
     c = pop();
-    printf("%c",c);
+    printf("%c v", c);
 
 }
