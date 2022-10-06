@@ -33,7 +33,8 @@ char pop(){
         return(c);
     }
     else{
-        return("e");
+        char c = "0";
+        return(c);
     }
 }
 void push(char n){
@@ -127,7 +128,7 @@ int main()
     push("e");
     push("e");
     push("e");
-    char c = pop();
+    char c = "a";
     printf("%c",c);
     c = pop();
     printf("3");
