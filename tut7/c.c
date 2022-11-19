@@ -155,24 +155,6 @@ int hightoftree(struct node *root)
         }
     }
 }
-/*
- * Function to print all the nodes left to right of the current level
- */
-void currentlevel(struct node *root, int level)
-{
-    if (root != NULL)
-    {
-        if (level == 1)
-        {
-            printf("%d ", root->key);
-        }
-        else if (level > 1)
-        {
-            currentlevel(root->left, level-1);
-            currentlevel(root->right, level-1);
-        }
-    }
-}
 void mirrorimage(struct node* root)
 {
   if (root != NULL)
@@ -180,17 +162,10 @@ void mirrorimage(struct node* root)
         struct node* temp;
         /*first traversing the left subtree */
         mirrorimage(root->left);
-        /* Traversing the right subtree. */
         mirrorimage(root->right);
-
-        /* swap the left and right child of all the nodes to create
-         * a mirror image of a tree
-         */
-
         temp = root->left;
         root->left  = root->right;
         root->right = temp;
-
     }
 }
 // Driver Program to test above functions
@@ -227,7 +202,9 @@ int main() {
 
         case 4:
             printf("\nMirror Image: \n");
+            print_tree_level_order(Root);
             mirrorimage(Root);
+            print_tree_level_order(Root);
             printf("\n");
             break;
 
