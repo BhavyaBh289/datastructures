@@ -62,13 +62,19 @@ void printGraph(struct Graph* graph) {
 }
 
 int main() {
-  struct Graph* graph = createAGraph(4);
-  addEdge(graph, 0, 1);
-  addEdge(graph, 0, 2);
-  addEdge(graph, 0, 3);
-  addEdge(graph, 1, 2);
+    int n,m,x,y;
+    printf("enter the number of matrices");
+    scanf("%d"&n);
+    printf("enter the number of edges");
+    scanf("%d"&m);
 
-  printGraph(graph);
-
-  return 0;
+    struct Graph* graph = createAGraph(n);
+    for (int i = 0; i < m; i++){
+        printf("enter the the nodes of edges");
+        scanf("%d"&x);
+        scanf("%d"&y);
+        addEdge(graph,x,y);
+    }
+    printGraph(graph);
+    return 0;
 }
