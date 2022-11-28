@@ -71,7 +71,7 @@ void bsort(){
   while(fread(&lib,sizeof(lib),1,fp)==1){
     s+=1;
   }
-  printf("%d",s);
+  // printf("%d",s);
   fclose(fp);
   struct FIR array[s];
   i=0;
@@ -83,8 +83,8 @@ void bsort(){
   fclose(fp);
   for (i = 0; i < s - 1; i++){
       for (j = 0; j < (s - 1-i); j++){
-          if (array[j].Aadhar_number < array[j + 1].Aadhar_number){
-              printf("%d  %d",j,i);
+          if (array[j].Aadhar_number > array[j + 1].Aadhar_number){
+              // printf("%d  %d",j,i);
               lib = array[j];
               array[j] = array[j + 1];
               array[j + 1] = lib;
