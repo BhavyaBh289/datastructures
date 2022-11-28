@@ -161,15 +161,16 @@ int main(){
           fclose(fp);
           break;
         case 2:
+          int t;
           printf("enter the Aadhar number \n");
-          scanf("%s",&data);
+          scanf("%d",&t);
           fp=fopen("stu","rb");
           if(fp==NULL){
             printf("can't read file");
             break;
           }
           while(fread(&lib,sizeof(lib),1,fp)==1){
-            if (strcmp(data,lib.Aadhar_number)==0){
+            if (data==lib.Aadhar_number){
               printstr(lib);
             }
           }
