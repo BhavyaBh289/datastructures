@@ -61,7 +61,42 @@ struct FIR addfir(){
   scanf("%s", &lib.Complainant_Informant);
   printf("Enter Othes = ");
   scanf("%s", &lib.Othes);
-  return lib
+  return lib;
+}
+void bsort(){
+  FILE *fp;
+  int i, j, s = 0;
+  struct FIR lib;
+  fp=fopen("stu","rb");
+  while(fread(&lib,sizeof(lib),1,fp)==1){
+    s+=1;
+  }
+  printf("%d",s);
+  fclose(fp);
+  struct FIR array[s];
+  i=0;
+  fp=fopen("stu","rb");
+  while(fread(&lib,sizeof(lib),1,fp)==1){
+    array[i]=lib;
+    i++;
+  }
+  fclose(fp);
+  for (i = 0; i < s - 1; i++){
+      for (j = 0; j < (s - 1-i); j++){
+          if (array[j].Aadhar_number < array[j + 1].Aadhar_number){
+              printf("%d  %d",j,i);
+              lib = array[j];
+              array[j] = array[j + 1];
+              array[j + 1] = lib;
+          }
+      }
+  }
+  fp = fopen("stu","wb");
+  for( i = 0; i < s; i++){
+    lib = array[i];
+    fwrite(&lib,sizeof(lib),1,fp);
+  }
+  fclose(fp);
 }
 int main(){
   struct FIR lib;
@@ -74,10 +109,10 @@ int main(){
   printf("2. Display all FIR information\n");
   printf("3. List all FIR of given details\n");
   printf("4. List the count of FIR's in the FIR\n");
-  printf("5. Sort all FIR's based on aadhar number \n");
+  printf("5. Sort all FIR's on the bases of aadhar number \n");
   printf("6. Exit\n");
 
- while (input != 5) {
+ while(input != 6) {
   printf("\n\nEnter one of "
    "the above: ");
   scanf("%d", &input);
@@ -156,10 +191,11 @@ int main(){
           fclose(fp);
           break;
       }
-
-
     case 5:
-      exit(0);
+      bsort();
+      break;
+    case 6:
+      break;
     }
  }
  return 0;
