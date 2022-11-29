@@ -19,6 +19,9 @@ struct FIR {
 
 
 };
+void assign(struct FIR * f ,int first,int last){
+  Type_of_information
+}
 void printstr(struct FIR lib){
   printf("Name = %s\n",lib.Name);
   printf("Father's/Husband's Name  = %s\n",lib.Father_s_Husband_s_Name);
@@ -98,6 +101,31 @@ void bsort(){
   }
   fclose(fp);
 }
+void isort(){
+  FILE *fp;
+  int i, j, s = 0;
+  struct FIR lib;
+  fp=fopen("stu","rb");
+  while(fread(&lib,sizeof(lib),1,fp)==1){
+    s+=1;
+  }
+  fclose(fp);
+  struct FIR array[s];
+  i=0;
+  fp=fopen("stu","rb");
+  while(fread(&lib,sizeof(lib),1,fp)==1){
+    array[i]=lib;
+    i++;
+  }
+  fclose(fp);
+
+  fp = fopen("stu","wb");
+  for( i = 0; i < s; i++){
+    lib = array[i];
+    fwrite(&lib,sizeof(lib),1,fp);
+  }
+  fclose(fp);
+}
 int main(){
   struct FIR lib;
   char ar_nm[30], bk_nm[30];
@@ -146,7 +174,7 @@ int main(){
       scanf("%d",&num);
       switch(num){
         case 1:
-          printf("enter the name ");
+          printf("enter the name \n");
           scanf("%s",&data);
           fp=fopen("stu","rb");
           if(fp==NULL){
@@ -162,7 +190,7 @@ int main(){
           break;
         case 2:
           int t;
-          printf("enter the Aadhar number ");
+          printf("enter the Aadhar number \n");
           scanf("%d",&t);
           fp=fopen("stu","rb");
           if(fp==NULL){
@@ -177,7 +205,7 @@ int main(){
           fclose(fp);
           break;
         case 3:
-          printf("enter the date ");
+          printf("enter the date \n");
           scanf("%s",&data);
           fp=fopen("stu","rb");
           if(fp==NULL){
