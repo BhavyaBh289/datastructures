@@ -67,7 +67,7 @@ void bsort(){
   FILE *fp;
   int i, j, s = 0;
   struct FIR lib;
-  fp=fopen("stu","rb");
+  fp=fopen("db","rb");
   while(fread(&lib,sizeof(lib),1,fp)==1){
     s+=1;
   }
@@ -75,7 +75,7 @@ void bsort(){
   fclose(fp);
   struct FIR array[s];
   i=0;
-  fp=fopen("stu","rb");
+  fp=fopen("db","rb");
   while(fread(&lib,sizeof(lib),1,fp)==1){
     array[i]=lib;
     i++;
@@ -91,7 +91,7 @@ void bsort(){
           }
       }
   }
-  fp = fopen("stu","wb");
+  fp = fopen("db","wb");
   for( i = 0; i < s; i++){
     lib = array[i];
     fwrite(&lib,sizeof(lib),1,fp);
@@ -118,7 +118,7 @@ int main(){
   scanf("%d", &input);
   switch (input) {
     case 1:
-      fp=fopen("stu","ab");
+      fp=fopen("db","ab");
       if(fp==NULL){
           printf("can't create file");
           break;
@@ -129,7 +129,7 @@ int main(){
       break;
     case 2:
       printf("you have entered the following information\n");
-      fp=fopen("stu","rb");
+      fp=fopen("db","rb");
         if(fp==NULL){
           printf("can't read file");
           break;
@@ -148,7 +148,7 @@ int main(){
         case 1:
           printf("enter the name ");
           scanf("%s",&data);
-          fp=fopen("stu","rb");
+          fp=fopen("db","rb");
           if(fp==NULL){
             printf("can't read file");
             break;
@@ -164,7 +164,7 @@ int main(){
           int t;
           printf("enter the Aadhar number ");
           scanf("%d",&t);
-          fp=fopen("stu","rb");
+          fp=fopen("db","rb");
           if(fp==NULL){
             printf("can't read file");
             break;
@@ -179,7 +179,7 @@ int main(){
         case 3:
           printf("enter the date ");
           scanf("%s",&data);
-          fp=fopen("stu","rb");
+          fp=fopen("db","rb");
           if(fp==NULL){
             printf("can't read file");
             break;
