@@ -24,14 +24,14 @@ void printstr(struct FIR lib){
   printf("Father's/Husband's Name  = %s\n",lib.Father_s_Husband_s_Name);
   printf("Date_Of_Birth  = %s\n",lib.Date_Of_Birth);
   printf("Address = %s\n",lib.Address);
-  printf("Aadhar_number = %d\n",lib.Aadhar_number);
+  printf("Aadhar number = %d\n",lib.Aadhar_number);
   printf("Nationality = %s\n",lib.Nationality);
   printf("IPC = %d\n",lib.IPC);
   printf("Date = %s\n",lib.Date);
   printf("Day  = %s\n",lib.Day);
   printf("Time_Period   = %s\n",lib.Time_Period);
   printf("Complainant/Informant  = %s\n",lib.Complainant_Informant);
-  printf("Othes  = %s\n\n",lib.Othes);
+  printf("Others  = %s\n\n",lib.Othes);
 }
 struct FIR addfir(){
   struct FIR lib;
@@ -43,7 +43,7 @@ struct FIR addfir(){
   scanf("%s", &lib.Date_Of_Birth);
   printf("Enter Address = ");
   scanf("%s", &lib.Address);
-  printf("Enter Aadhar number = ");
+  printf("Enter last 4 digits s Aadhar number = ");
   scanf("%d", &lib.Aadhar_number);
   printf("Enter Nationality  = ");
   scanf("%s", &lib.Nationality);
@@ -59,7 +59,7 @@ struct FIR addfir(){
   scanf("%s", &lib.Time_Period);
   printf("Enter Complainant/Informant = ");
   scanf("%s", &lib.Complainant_Informant);
-  printf("Enter Othes = ");
+  printf("Enter Others = ");
   scanf("%s", &lib.Othes);
   return lib;
 }
@@ -100,7 +100,6 @@ void bsort(){
 }
 int main(){
   struct FIR lib;
-  char ar_nm[30], bk_nm[30];
   int i, input, count;
   i = input = count = 0;
   FILE *fp;
@@ -108,13 +107,11 @@ int main(){
   printf("1. Register a FIR\n");
   printf("2. Display all FIR information\n");
   printf("3. List all FIR of given details\n");
-  printf("4. List the count of FIR's in the FIR\n");
-  printf("5. Sort all FIR's on the bases of aadhar number \n");
-  printf("6. Exit\n");
+  printf("4. Sort all FIR's on the bases of aadhar number \n");
+  printf("5. Exit\n");
 
- while(input != 6) {
-  printf("\n\nEnter one of "
-   "the above: ");
+ while(input != 5) {
+  printf("\n\nEnter one of the above: ");
   scanf("%d", &input);
   switch (input) {
     case 1:
@@ -128,10 +125,10 @@ int main(){
       fclose(fp);
       break;
     case 2:
-      printf("you have entered the following information\n");
+      printf("You have entered the following information\n");
       fp=fopen("db","rb");
         if(fp==NULL){
-          printf("can't read file");
+          printf("Can't read file");
           break;
         }
         while(fread(&lib,sizeof(lib),1,fp)==1){
@@ -142,15 +139,15 @@ int main(){
     case 3:
       int num;
       char data[20];
-      printf("what detail do you want to search for \n 1:Name \n 2: Aadhar number \n 3: Date \n");
+      printf("What detail do you want to search for \n 1:Name \n 2: Aadhar number \n 3: Date \n");
       scanf("%d",&num);
       switch(num){
         case 1:
-          printf("enter the name ");
+          printf("Enter the name ");
           scanf("%s",&data);
           fp=fopen("db","rb");
           if(fp==NULL){
-            printf("can't read file");
+            printf("Can't read file");
             break;
           }
           while(fread(&lib,sizeof(lib),1,fp)==1){
@@ -162,11 +159,11 @@ int main(){
           break;
         case 2:
           int t;
-          printf("enter the Aadhar number ");
+          printf("Enter the Aadhar number ");
           scanf("%d",&t);
           fp=fopen("db","rb");
           if(fp==NULL){
-            printf("can't read file");
+            printf("Can't read file");
             break;
           }
           while(fread(&lib,sizeof(lib),1,fp)==1){
@@ -177,11 +174,11 @@ int main(){
           fclose(fp);
           break;
         case 3:
-          printf("enter the date ");
+          printf("Enter the date ");
           scanf("%s",&data);
           fp=fopen("db","rb");
           if(fp==NULL){
-            printf("can't read file");
+            printf("Can't read file");
             break;
           }
           while(fread(&lib,sizeof(lib),1,fp)==1){
@@ -192,10 +189,10 @@ int main(){
           fclose(fp);
           break;
       }
-    case 5:
+    case 4:
       bsort();
       break;
-    case 6:
+    case 5:
       break;
     }
  }
