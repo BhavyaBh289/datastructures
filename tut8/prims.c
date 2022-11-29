@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <malloc.h>
- struct node
-{
+ struct node{
     int data;
+    int weight;
     struct node * next;
 
 };
@@ -11,10 +11,11 @@ struct Graph {
   struct node** adjLists;
 };
 
-struct node* createNode(int v) {
+struct node* createNode(int v,int c) {
   struct node* newNode = malloc(sizeof(struct node));
   newNode->data = v;
   newNode->next = NULL;
+  newNode->weight = c;
   return newNode;
 }
 
@@ -31,18 +32,15 @@ struct Graph* createAGraph(int vertices) {
   return graph;
 }
 
-void addEdge(struct Graph* graph, int s, int d) {
-  struct node* newNode = createNode(d);
+void addEdge(struct Graph* graph, int s, int d,int c) {
+  struct node* newNode = createNode(d,c);
   newNode->next = graph->adjLists[s];
   graph->adjLists[s] = newNode;
-  newNode = createNode(s);
-  newNode->next = graph->adjLists[d];
-  graph->adjLists[d] = newNode;
 }
 
 void printGraph(struct Graph* graph) {
   int v;
-  for (v = 0; v < graph->numVertices; v++) {
+  for (v = 0; v < graph->vertNum; v++) {
     struct node* temp = graph->adjLists[v];
     printf("\n Vertex %d\n: ", v);
     while (temp) {
@@ -52,21 +50,29 @@ void printGraph(struct Graph* graph) {
     printf("\n");
   }
 }
+
+struct Graph * mstcreate(struct Graph * graph){
+    struct Graph* new = createAGraph(graph->vertNum);
+    return new;
+}
+
 int main() {
-    int n,m,x,y;
+    int n,m,x,y,z;
     printf("enter the number of matrices");
-    scanf("%d"&n);
+    scanf("%d",&n);
     printf("enter the number of edges");
-    scanf("%d"&m);
+    scanf("%d",&m);
 
     struct Graph* graph = createAGraph(n);
     for (int i = 0; i < m; i++){
-        printf("enter the the nodes of edges");
-        scanf("%d"&x);
-        scanf("%d"&y);
-        addEdge(graph,x,y);
+        printf("enter the nodes of edge");
+        scanf("%d",&x);
+        scanf("%d",&y);
+        printf("enter the cost of edge");
+        scanf("%d",&z);
+        addEdge(graph,x,y,z);
     }
     printGraph(graph);
+    struct Graph* mst = mstcreate(graph);
     return 0;
 }
-
