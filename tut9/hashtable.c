@@ -29,7 +29,6 @@ void linear_probe(int key,int num){
             }
             if(arr[i][1]==-1){
                 arr[i][1]=num;
-                printf("collision resolved");
                 k= false;
                 break;
             }
