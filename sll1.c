@@ -7,6 +7,7 @@
 
 }* head;
 
+
 void create(int n){
     head = (struct node *) malloc(sizeof(struct node));
     head->data = n;
