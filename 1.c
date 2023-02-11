@@ -9,6 +9,7 @@ struct student
     int marks;
     char name[50];
 };
+
 void print_students(struct student * f, int n) //See above
 {
     int i;
