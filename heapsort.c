@@ -6,6 +6,7 @@
     int marks;
     char name;
 };
+
 void swap(struct student * f ,int first,int last){
     int temp;
     char tempchr;
