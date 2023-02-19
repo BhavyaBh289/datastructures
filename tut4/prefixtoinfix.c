@@ -1,7 +1,10 @@
 #include <stdio.h>
+
 #include <malloc.h>
+
 #define MAX 100
- struct node
+
+struct node
 {
     char * data;
     struct node * next;
@@ -69,12 +72,19 @@ void prefixtoinfix(char Infix[], char Prefix[])
             q = pop();
             chrpcpy(l,bo);
             chrpcpy(l,p);
+
             chrpcpy(l,e);
+
             chrpcpy(l,q);
+
             chrpcpy(l,bc);
+
             // l = "("+ p + e + q + ")";
+
             push(l);
+
             printf("%s", bo);
+
             l = NULL;
         }
 
