@@ -10,8 +10,7 @@ struct student
     char name[50];
 };
 
-void print_students(struct student * f, int n) //See above
-{
+void print_students(struct student * f, int n) {
     int i;
     for(i=0; i < n; i++)
     {
