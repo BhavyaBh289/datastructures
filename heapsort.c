@@ -16,6 +16,7 @@ void swap(struct student * f ,int first,int last){
     temp = f[first].roll_no;
     f[first].roll_no = f[last].roll_no;
     f[last].roll_no = temp;
+
 //     tempchr = f[first].name;
 //     f[first].name = f[last].name;
 //     f[last].name = tempchr;
