@@ -8,6 +8,7 @@
     char name[100];
 };
 int z = 0;
+
 void assign(struct student * f ,int first,struct student * g,int last){
     f[first].marks = g[last].marks;
     f[first].roll_no = g[last].roll_no;
