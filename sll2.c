@@ -18,6 +18,7 @@ void insert_last(int n){
     last->next = next;
     last = next;
 }
+
 void display(){
     struct node *temp;
     temp = head;
