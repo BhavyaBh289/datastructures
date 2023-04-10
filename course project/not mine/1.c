@@ -33,6 +33,84 @@ int main() {
         scanf("%d", &choice);
         switch(choice) {
             case 1:
+                printf("Date Received (YYYY\nMM\nDD): ");
+                scanf("%d", &yy);
+                if(yy>=1900 && yy<=9999){
+                    //check month
+                    scanf("%d", &mm);
+                    if(mm>=1 && mm<=12){
+                        scanf("%d", &dd);
+                        if((dd>=1 && dd<=31) && (mm==1 || mm==3 || mm==5 || mm==7 || mm==8 || mm==10 || mm==12)){
+                            data.date_received[0] = dd;
+                            data.date_received[1] = mm;
+                            data.date_received[2] = yy;
+                        }
+                        else if((dd>=1 && dd<=30) && (mm==4 || mm==6 || mm==9 || mm==11)){
+                            data.date_received[0] = dd;
+                            data.date_received[1] = mm;
+                            data.date_received[2] = yy;
+                        }
+                        else if((dd>=1 && dd<=28) && (mm==2)){
+                            data.date_received[0] = dd;
+                            data.date_received[1] = mm;
+                            data.date_received[2] = yy;
+                        }
+                        else if(dd==29 && mm==2 && (yy%400==0 ||(yy%4==0 && yy%100!=0))){
+                            data.date_received[0] = dd;
+                            data.date_received[1] = mm;
+                            data.date_received[2] = yy;
+                        }
+                        else{
+                            printf("Day is invalid.\n");
+                            break;
+                        }
+                        }else{
+                        printf("Month is not valid.\n");
+                        break;
+                    }
+                }else{
+                    printf("Year is not valid.\n");
+                    break;
+                }
+                printf("Expiration Date (YYYY-MM-DD): ");
+                scanf("%d", &yy);
+                if(yy>=1900 && yy<=9999){
+                    //check month
+                    scanf("%d", &mm);
+                    if(mm>=1 && mm<=12){
+                        scanf("%d", &dd);
+                        if((dd>=1 && dd<=31) && (mm==1 || mm==3 || mm==5 || mm==7 || mm==8 || mm==10 || mm==12)){
+                            data.expiration_date[0] = dd;
+                            data.expiration_date[1] = mm;
+                            data.expiration_date[2] = yy;
+                        }
+                        else if((dd>=1 && dd<=30) && (mm==4 || mm==6 || mm==9 || mm==11)){
+                            data.expiration_date[0] = dd;
+                            data.expiration_date[1] = mm;
+                            data.expiration_date[2] = yy;
+                        }
+                        else if((dd>=1 && dd<=28) && (mm==2)){
+                            data.expiration_date[0] = dd;
+                            data.expiration_date[1] = mm;
+                            data.expiration_date[2] = yy;
+                        }
+                        else if(dd==29 && mm==2 && (yy%400==0 ||(yy%4==0 && yy%100!=0))){
+                            data.expiration_date[0] = dd;
+                            data.expiration_date[1] = mm;
+                            data.expiration_date[2] = yy;
+                        }
+                        else{
+                            printf("Day is invalid.\n");
+                            break;
+                        }
+                    }else{
+                        printf("Month is not valid.\n");
+                        break;
+                    }
+                }else{
+                    printf("Year is not valid.\n");
+                    break;
+                }
                 printf("Enter item details:\nCode: ");
                 scanf("%d", &data.code);
                 printf("Name: ");
@@ -41,57 +119,6 @@ int main() {
                 scanf("%f", &data.price);
                 printf("Stock: ");
                 scanf("%d", &data.stock);
-                printf("Date Received (YYYY\nMM\nDD): ");
-                scanf("%d", &yy);
-                if(yy>=1900 && yy<=9999){
-                    //check month
-                    scanf("%d", &mm);
-                    if(mm>=1 && mm<=12){
-                        scanf("%d", &dd);
-                        if((dd>=1 && dd<=31) && (mm==1 || mm==3 || mm==5 || mm==7 || mm==8 || mm==10 || mm==12))
-                            &data.date_received = {dd,mm,yy};
-                        else if((dd>=1 && dd<=30) && (mm==4 || mm==6 || mm==9 || mm==11))
-                            scanf("%d-%d-%d", &data.date_received);
-                        else if((dd>=1 && dd<=28) && (mm==2))
-                            scanf("%d-%d-%d", &data.date_received);
-                        else if(dd==29 && mm==2 && (yy%400==0 ||(yy%4==0 && yy%100!=0)))
-                            scanf("%d-%d-%d", &data.date_received);
-                        else
-                            printf("Day is invalid.\n");
-                    }else{
-                        printf("Month is not valid.\n");
-                    }
-
-                }else{
-        printf("Year is not valid.\n");
-                }
-                printf("Expiration Date (YYYY-MM-DD): ");
-                if(yy>=1900 && yy<=9999)
-    {
-        //check month
-        if(mm>=1 && mm<=12)
-        {
-            //check days
-            if((dd>=1 && dd<=31) && (mm==1 || mm==3 || mm==5 || mm==7 || mm==8 || mm==10 || mm==12))
-                 scanf("%d-%d-%d", &data.expiration_date);
-            else if((dd>=1 && dd<=30) && (mm==4 || mm==6 || mm==9 || mm==11))
-                scanf("%d-%d-%d", &data.expiration_date);
-            else if((dd>=1 && dd<=28) && (mm==2))
-                scanf("%d-%d-%d", &data.expiration_date);
-            else if(dd==29 && mm==2 && (yy%400==0 ||(yy%4==0 && yy%100!=0)))
-                 scanf("%d-%d-%d", &data.expiration_date);
-            else
-                printf("Day is invalid.\n");
-        }
-        else
-        {
-            printf("Month is not valid.\n");
-        }
-    }
-    else
-    {
-        printf("Year is not valid.\n");
-    }
                 //scanf("%s", data.expiration_date);
                 root = insert(root, data);
                 break;
