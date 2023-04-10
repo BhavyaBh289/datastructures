@@ -33,7 +33,7 @@ int main() {
         scanf("%d", &choice);
         switch(choice) {
             case 1:
-                printf("Date Received (YYYY\nMM\nDD): ");
+                printf("Date Received (YYYY\\MM\\DD): ");
                 scanf("%d", &yy);
                 if(yy>=1900 && yy<=9999){
                     //check month
@@ -72,7 +72,7 @@ int main() {
                     printf("Year is not valid.\n");
                     break;
                 }
-                printf("Expiration Date (YYYY-MM-DD): ");
+                printf("Expiration Date (YYYY\\MM\\DD): ");
                 scanf("%d", &yy);
                 if(yy>=1900 && yy<=9999){
                     //check month
