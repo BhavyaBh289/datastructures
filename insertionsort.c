@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
- struct student
-{
+ struct student{
     int roll_no;
     int marks;
     char name[100];
 };
+
 int z = 0;
 
 void assign(struct student * f ,int first,struct student * g,int last){
@@ -15,10 +15,10 @@ void assign(struct student * f ,int first,struct student * g,int last){
     strcpy(f[first].name,g[last].name);
     z++;
 }
-    // function to print the elements of the array
+// function to print the elements of the array
 void display(struct student * arr, int n) {
     int i;
-  for(i=0;i<n;i++){
+    for(i=0;i<n;i++){
        printf("student's name: %s\n", arr[i].name);
        printf(" student's roll no: %d\n", arr[i].roll_no);
        printf("student's total_marks: %d\n", arr[i].marks);
@@ -33,7 +33,7 @@ void insertionSort(struct student * arr, int n) {
     while (tmp[0].roll_no < arr[j].roll_no && j >= 0) {
         assign(arr,j+1,arr,j);
 //       arr[j + 1] = arr[j];
-      --j;
+        --j;
     }
     assign(arr,j+1,tmp,0);
 //     arr[j + 1] = tmp;
