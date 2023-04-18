@@ -18,10 +18,10 @@ struct node {
 };
 int mm,yy,dd;
 struct node* insert(struct node* root, struct product data);
-void list_expired_items_prefix(struct node* root);
+//void list_expired_items_prefix(struct node* root);
 void list_all_items(struct node* root);
 struct node* delete_by_code(struct node* root, int code);
-struct node* delete_expired_items(struct node* root);
+//struct node* delete_expired_items(struct node* root);
 
 int main() {
     struct node* root = NULL;
@@ -29,7 +29,7 @@ int main() {
     struct product data;
     printf("Shop Owner Program\n");
     do {
-        printf("\nMenu\n1. Insert an item\n2. List expired items in Prefix order\n3. List all items\n4. Delete an item\n5. Delete expired items\n6. Exit\nEnter your choice: ");
+        printf("\nMenu\n1. Insert an item\n2. List all items\n3. Delete an item\n4. Exit\nEnter your choice: ");
         scanf("%d", &choice);
         switch(choice) {
             case 1:
@@ -80,21 +80,165 @@ int main() {
                     if(mm>=1 && mm<=12){
                         scanf("%d", &dd);
                         if((dd>=1 && dd<=31) && (mm==1 || mm==3 || mm==5 || mm==7 || mm==8 || mm==10 || mm==12)){
+                            if (data.date_received[2] > yy)
+  { printf("invalid expiration date");
+    break;
+  }
+else
+  {
+    if (data.date_received[2] == yy)
+      {
+if (data.date_received[1] > mm)
+ {
+   printf("invalid expiration date");
+   break;
+ }
+else
+ {
+   if (data.date_received[1] == mm)
+     {
+if (data.date_received[0] >= dd)
+ {
+    printf("invalid expiration date");
+   break;
+ }
+else
+ {
+   continue;/*if (data.date_received[0] == dd)
+     {
+
+     }*/
+ }
+
+     }
+ }
+
+      }
+  }
+
                             data.expiration_date[0] = dd;
                             data.expiration_date[1] = mm;
                             data.expiration_date[2] = yy;
                         }
                         else if((dd>=1 && dd<=30) && (mm==4 || mm==6 || mm==9 || mm==11)){
+                            if (data.date_received[2] > yy)
+  {printf("invalid expiration date");
+    break;
+  }
+else
+  {
+    if (data.date_received[2] == yy)
+      {
+if (data.date_received[1] > mm)
+ {
+   printf("invalid expiration date");
+   break;
+ }
+else
+ {
+   if (data.date_received[1] == mm)
+     {
+if (data.date_received[0] >= dd)
+ {
+  printf("invalid expiration date");
+   break;
+ }
+else
+ {
+   continue;/*if (data.date_received[0] == dd)
+     {
+
+     }*/
+ }
+
+     }
+ }
+
+      }
+  }
+
                             data.expiration_date[0] = dd;
                             data.expiration_date[1] = mm;
                             data.expiration_date[2] = yy;
                         }
                         else if((dd>=1 && dd<=28) && (mm==2)){
+                            if (data.date_received[2] > yy)
+  {
+      printf("invalid expiration date");
+    break;
+  }
+else
+  {
+    if (data.date_received[2] == yy)
+      {
+if (data.date_received[1] > mm)
+ {
+   printf("invalid expiration date");
+   break;
+ }
+else
+ {
+   if (data.date_received[1] == mm)
+     {
+if (data.date_received[0] >= dd)
+ { printf("invalid expiration date");
+   break;
+ }
+else
+ {
+   continue;/*if (data.date_received[0] == dd)
+     {
+
+     }*/
+ }
+
+     }
+ }
+
+      }
+  }
+
                             data.expiration_date[0] = dd;
                             data.expiration_date[1] = mm;
                             data.expiration_date[2] = yy;
                         }
                         else if(dd==29 && mm==2 && (yy%400==0 ||(yy%4==0 && yy%100!=0))){
+                            if (data.date_received[2] > yy)
+  {printf("invalid expiration date");
+    break;
+  }
+else
+  {
+    if (data.date_received[2] == yy)
+      {
+if (data.date_received[1] > mm)
+ {
+   printf("invalid expiration date");
+   break;
+ }
+else
+ {
+   if (data.date_received[1] == mm)
+     {
+if (data.date_received[0] >= dd)
+ {
+     printf("invalid expiration date");
+   break;
+ }
+else
+ {
+   continue;/*if (data.date_received[0] == dd)
+     {
+
+     }*/
+ }
+
+     }
+ }
+
+      }
+  }
+
                             data.expiration_date[0] = dd;
                             data.expiration_date[1] = mm;
                             data.expiration_date[2] = yy;
@@ -123,14 +267,13 @@ int main() {
                 root = insert(root, data);
                 break;
             case 2:
-                printf("Expired items in Prefix order:\n");
-                list_expired_items_prefix(root);
-                break;
-            case 3:
                 printf("All items:\n");
                 list_all_items(root);
                 break;
-            case 4:
+             /*   printf("Expired items in Prefix order:\n");
+                list_expired_items_prefix(root);
+                break;*/
+            case 3:
                 printf("Enter item code to delete: ");
                 scanf("%d", &code);
                 root = delete_by_code(root, code);
@@ -141,17 +284,19 @@ int main() {
                     printf("Item deleted successfully\n");
                 }
                 break;
-            case 5:
-                root = delete_expired_items(root);
+            case 4:
+                printf("Exiting program\n");
+                break;
+             /*case 5:
+               root = delete_expired_items(root);
                 printf("Expired items deleted successfully\n");
                 break;
             case 6:
-                printf("Exiting program\n");
-                break;
+                */
             default:
                 printf("Invalid choice, try again\n");
         }
-    } while(choice != 6);
+    } while(choice != 4);
     return 0;
 }
 
@@ -172,7 +317,7 @@ struct node* insert(struct node* root, struct product data) {
     return root;
 }
 
-void list_expired_items_prefix(struct node* root) {
+/*void list_expired_items_prefix(struct node* root) {
     if(root == NULL) {
         return;
     }
@@ -181,14 +326,14 @@ void list_expired_items_prefix(struct node* root) {
     }
     list_expired_items_prefix(root->left);
     list_expired_items_prefix(root->right);
-}
+}*/
 
 void list_all_items(struct node* root) {
     if(root == NULL) {
         return;
     }
     list_all_items(root->left);
-    printf("Code: %d, Name: %s, Price: %.2f, Stock: %d, Date Received: %d-%d-%d, Expiration Date: %d-%d-%d\n", root->data.code, root->data.name, root->data.price, root->data.stock, root->data.date_received, root->data.expiration_date);
+    printf("Code: %d, Name: %s, Price: %.2f, Stock: %d, Date Received: %d-%d-%d, Expiration Date: %d-%d-%d\n", root->data.code, root->data.name, root->data.price, root->data.stock, root->data.date_received[0],root->data.date_received[1],root->data.date_received[2] ,root->data.expiration_date[0],root->data.expiration_date[1],root->data.expiration_date[2]);
     list_all_items(root->right);
 }
 
@@ -199,7 +344,7 @@ struct node* delete_by_code(struct node* root, int code) {
     if(code < root->data.code) {
         root->left = delete_by_code(root->left, code);
     }
-    else if(code > root->data.code) {
+    else if(code >= root->data.code) {
         root->right = delete_by_code(root->right, code);
     }
     else {
@@ -223,7 +368,7 @@ struct node* delete_by_code(struct node* root, int code) {
     return root;
 }
 
-struct node* delete_expired_items(struct node* root) {
+/*struct node* delete_expired_items(struct node* root) {
     if(root == NULL) {
         return NULL;
     }
@@ -233,4 +378,5 @@ struct node* delete_expired_items(struct node* root) {
         root = delete_by_code(root, root->data.code);
     }
     return root;
-}
+}*/
+
