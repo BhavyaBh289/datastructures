@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
- struct node
-{
+ struct node{
     int data;
     struct node * next;
 
