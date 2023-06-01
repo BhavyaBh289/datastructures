@@ -8,6 +8,16 @@ int linearSearch(int arr[], int n, int d) {
     }
     return 0;
 }
+int findOccourances(int arr[], int n, int d) {
+    int k=0;
+    // printf("%d %d %d",n,d,arr[-1]);
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == d) {
+            k++;
+        }
+    }
+    return k;
+}
 void insertionsort(int arr[],int n){
     int j,key;
     for(int i=1;i<n;i++){
@@ -33,10 +43,20 @@ int main(){
     for(int i=0;i<n;i++){
         printf("%d ",arr[i]);
     }
-    printf("\nenter the element whose no. of occurences is required");
+    printf("\nenter the element whose no. of location is required");
     scanf("%d",&d);
 
     int q=linearSearch(arr,n,d);
+    if(q==0){
+        printf("no element found\n");
+    }
+    else{
+        printf("%d",q);
+    }
+    printf("\nenter the element whose no. of occurences is required");
+    scanf("%d",&d);
+
+    q=findOccourances(arr,n,d);
     if(q==0){
         printf("no element found\n");
     }
