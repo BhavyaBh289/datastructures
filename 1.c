@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct student
-{
+struct student{
     int roll_num;
     int marks;
     char name[50];
