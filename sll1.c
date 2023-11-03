@@ -13,6 +13,8 @@ void create(int n){
     head->data = n;
     head->next = NULL;
 }
+
+
 // void insert_last(int n){
 //     struct node *next = (struct node *) malloc(sizeof(struct node));
 //     printf("Enter value ");
